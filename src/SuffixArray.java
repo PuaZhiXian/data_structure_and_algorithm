@@ -1,17 +1,9 @@
-import java.util.Arrays;
-
 public class SuffixArray {
-    static final int N = 128;
-
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(new SuffixArray().suffixArray("abaab"))); //expected --> {2,3,0,4,1}
-        System.out.println(Arrays.toString(new SuffixArray().suffixArray("banana"))); //expected --> {5, 3, 1, 0, 4, 2}
-    }
-
     public int[] suffixArray(String text) {
         int n = text.length();
-        int[] rk = new int[n];
-        int[] sa = new int[n];
+        int[] rk = new int[n]; // store ranking of each suffix
+        int[] sa = new int[n]; // sort suffix based on their ranking.
+        // sa[0] = 4 indicate suffix start from text.chartAt(4) have the lowest ranking
 
         // init rk
         for (int i = 0; i < n; i++) {
@@ -21,7 +13,7 @@ public class SuffixArray {
         while (true) {
             int[][] pairArr = new int[n][3];
             for (int i = 0; i < n; i++) {
-                //index
+                //store this pair is origin from which index of text
                 pairArr[i][2] = i;
                 //first key
                 pairArr[i][0] = rk[i];
@@ -61,22 +53,20 @@ public class SuffixArray {
                 outputArray[countArray[pairArr[j][0]]] = pairArr[j];
             }
             pairArr = outputArray;
+
+            //Ranking the pair
             int rank = 1;
             for (int i = 0; i < pairArr.length; i++) {
-                sa[pairArr[i][2]] = rank;
-                rk[pairArr[i][2]] = rank;
+                sa[i] = pairArr[i][2];
+                rk[sa[i]] = rank;
                 if (i + 1 < pairArr.length && pairArr[i][0] == pairArr[i + 1][0] && pairArr[i][1] == pairArr[i + 1][1]) {
                     continue;
                 }
                 rank++;
             }
-
+            //There is not have same ranking elements
             if (rank == n + 1) {
-                int[] result = new int[n];
-                for (int i = 0; i < pairArr.length; i++) {
-                    result[i] = pairArr[i][2];
-                }
-                return result;
+                return sa;
             }
             k++;
         }

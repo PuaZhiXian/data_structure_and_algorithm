@@ -5,6 +5,7 @@ public class mainClass {
     public static void main(String[] args) {
         mainClass.trieTestCase();
         mainClass.sortingTestCase();
+        mainClass.suffixArrayTestCase();
     }
 
     public static void trieTestCase() {
@@ -50,6 +51,11 @@ public class mainClass {
         //counting sort
         int[] singleNumberArr = {2, 5, 3, 0, 2, 3, 0, 3, 90};
         System.out.println(Arrays.toString(obj.countingSort(singleNumberArr)));
+    }
+
+    public static void suffixArrayTestCase(){
+        System.out.println(Arrays.toString(new SuffixArray().suffixArray("abaab"))); //expected --> {2,3,0,4,1}
+        System.out.println(Arrays.toString(new SuffixArray().suffixArray("banana"))); //expected --> {5, 3, 1, 0, 4, 2}
     }
 
 }
