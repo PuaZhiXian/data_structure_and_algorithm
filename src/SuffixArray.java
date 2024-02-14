@@ -3,13 +3,9 @@ import java.util.Arrays;
 public class SuffixArray {
 
     public static void main(String[] args) {
-        SuffixArray obj = new SuffixArray();
         String t = "banana";
         String[] s = {"ana"};
         System.out.println(Arrays.toString(new SuffixArray().binarySearchSuffixArray(t, s)));
-//        System.out.println(Arrays.toString(obj.suffixArray(t)));
-
-
     }
 
     public int[] suffixArray(String text) {
@@ -88,7 +84,6 @@ public class SuffixArray {
     public boolean[] binarySearchSuffixArray(String t, String[] s) {
         //create suffix array
         int[] suffixArray = new SuffixArray().suffixArray(t);
-        System.out.println(Arrays.toString(suffixArray));
         boolean[] result = new boolean[s.length];
 
         //iterate through all query (s)
