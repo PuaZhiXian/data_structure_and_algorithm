@@ -1,4 +1,14 @@
+import java.util.Arrays;
+
 public class SuffixArray {
+
+    public static void main(String[] args) {
+        String t = "banana";
+        String[] s = {"ana", "nana", "s", "ant", "old"};
+        System.out.println(Arrays.toString(new SuffixArray().binarySearchSuffixArray(t, s)));
+
+    }
+
     public int[] suffixArray(String text) {
         int n = text.length();
         int[] rk = new int[n]; // store ranking of each suffix
@@ -70,6 +80,57 @@ public class SuffixArray {
             }
             k++;
         }
+    }
+
+    public boolean[] binarySearchSuffixArray(String t, String[] s) {
+        //create suffix array
+        int[] suffixArray = new SuffixArray().suffixArray(t);
+        boolean[] result = new boolean[s.length];
+
+        //iterate through all query (s)
+        for (int j = 0; j < s.length; j++) {
+            String query = s[j];
+            //set left & right of binary search
+            int left = 0, right = suffixArray.length - 1;
+            while (left <= right) {
+                //init middle
+                int middle = left + (right - left) / 2;
+                String pivot = t.substring(suffixArray[middle]);
+                //store total of same char
+                int sameCount = 0;
+                //iterate through query
+                for (int i = 0; i < query.length(); i++) {
+                    if (i > pivot.length() - 1) {
+                        //Case 3: pivot length is smaller than query
+                        //and all char from pivot match with query
+                        left = middle + 1;
+                        sameCount = 0;
+                        break;
+                    }
+                    //Find different between char
+                    int charDiff = pivot.charAt(i) - query.charAt(i);
+                    if (charDiff < 0) {
+                        //Case 1: pivot is smaller than query
+                        left = middle + 1;
+                        sameCount = 0;
+                        break;
+                    } else if (charDiff > 0) {
+                        //Case 2: pivot is bigger than query
+                        right = middle - 1;
+                        sameCount = 0;
+                        break;
+                    }
+                    sameCount++;
+                }
+                //Case 4 : A prefix of query is found in pivot
+                if (sameCount == query.length()) {
+                    result[j] = true;
+                    break;
+                }
+            }
+        }
+
+        return result;
     }
 
 }
