@@ -3,9 +3,10 @@ import java.util.Arrays;
 public class mainClass {
 
     public static void main(String[] args) {
-        mainClass.trieTestCase();
-        mainClass.sortingTestCase();
-        mainClass.suffixArrayTestCase();
+//        mainClass.trieTestCase();
+//        mainClass.sortingTestCase();
+//        mainClass.suffixArrayTestCase();
+        mainClass.manacheraAlgoTestCase();
     }
 
     public static void trieTestCase() {
@@ -53,9 +54,27 @@ public class mainClass {
         System.out.println(Arrays.toString(obj.countingSort(singleNumberArr)));
     }
 
-    public static void suffixArrayTestCase(){
+    public static void suffixArrayTestCase() {
         System.out.println(Arrays.toString(new SuffixArray().suffixArray("abaab"))); //expected --> {2,3,0,4,1}
         System.out.println(Arrays.toString(new SuffixArray().suffixArray("banana"))); //expected --> {5, 3, 1, 0, 4, 2}
+    }
+
+    public static void manacheraAlgoTestCase() {
+        ManacheraAlgorithm obj = new ManacheraAlgorithm();
+        String s1 = "abababa";
+        String s2 = "acncacn";
+        String s3 = "abaxabaxabb";
+        String s4 = "abb";
+        String s5 = "abc";
+        String s6 = "aaa";
+        System.out.printf("longest palindromic in text {%s} --> {%s}\n", s1, obj.getLongestPalindromic(s1));//abababa
+        System.out.printf("longest palindromic in text {%s} --> {%s}\n", s2, obj.getLongestPalindromic(s2));//acnca
+        System.out.printf("longest palindromic in text {%s} --> {%s}\n", s3, obj.getLongestPalindromic(s3));//baxabaxab
+        System.out.printf("longest palindromic in text {%s} --> {%s}\n", s4, obj.getLongestPalindromic(s4));//aaa
+
+        System.out.printf("number of palindromic in text {%s} --> {%d}\n", s4, obj.getPalindromicCount(s4));//4
+        System.out.printf("number of palindromic in text {%s} --> {%d}\n", s5, obj.getPalindromicCount(s5));//3
+        System.out.printf("number of palindromic in text {%s} --> {%d}\n", s6, obj.getPalindromicCount(s6));//6
     }
 
 }
