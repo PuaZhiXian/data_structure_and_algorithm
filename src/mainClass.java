@@ -6,7 +6,8 @@ public class mainClass {
 //        mainClass.trieTestCase();
 //        mainClass.sortingTestCase();
 //        mainClass.suffixArrayTestCase();
-        mainClass.manacheraAlgoTestCase();
+//        mainClass.manacheraAlgoTestCase();
+        mainClass.binaryIndexedTreeTestCase();
     }
 
     public static void trieTestCase() {
@@ -77,4 +78,11 @@ public class mainClass {
         System.out.printf("number of palindromic in text {%s} --> {%d}\n", s6, obj.getPalindromicCount(s6));//6
     }
 
+    public static void binaryIndexedTreeTestCase(){
+        int[] arr1 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
+        BinaryIndexedTree bTree = new BinaryIndexedTree(arr1);
+        System.out.printf("Sum of first {%d}  element --> %d\n",4,bTree.getSum(3));
+        System.out.printf("Sum of first {%d}  element --> %d\n",6,bTree.getSum(5));
+        System.out.printf("Sum of first {%d}  element --> %d\n",15,bTree.getSum(14));
+    }
 }
